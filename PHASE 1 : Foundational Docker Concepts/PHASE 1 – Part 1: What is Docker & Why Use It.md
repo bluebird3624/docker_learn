@@ -43,11 +43,9 @@ Docker is a **containerization platform** that allows you to package an applicat
 
 ### 🚦 Your First Commands (Try These Now):
 
-bash
-
-CopyEdit
-
-`# Check Docker is installed docker --version  # Pull an image from Docker Hub docker pull hello-world  # Run the image (runs a test container) docker run hello-world`
+``` Check Docker is installed
+ docker --version  
+ Pull an image from Docker Hub docker pull hello-world  # Run the image (runs a test container) docker run hello-world```
 
 You should see a success message.
 
@@ -56,10 +54,6 @@ You should see a success message.
 ### 📝 Assignment 1:
 
 Try running a containerized version of Nginx:
-
-bash
-
-CopyEdit
 
 `docker run -d -p 8080:80 --name webserver nginx`
 

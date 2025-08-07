@@ -15,17 +15,9 @@
 
 ### 🔧 Example:
 
-bash
-
-CopyEdit
-
 `# Pull the official Python image docker pull python:3.10  # Run a container from that image docker run -it python:3.10`
 
 You’ll now be inside a running container with the Python shell open. Try typing:
-
-python
-
-CopyEdit
 
 `print("Hello from inside Docker!")`
 
@@ -37,25 +29,13 @@ Then type `exit()` to leave the container.
 
 #### Check images you have:
 
-bash
-
-CopyEdit
-
 `docker images`
 
 #### Check running containers:
 
-bash
-
-CopyEdit
-
 `docker ps`
 
 #### Check **all** containers (even stopped ones):
-
-bash
-
-CopyEdit
 
 `docker ps -a`
 
@@ -77,17 +57,9 @@ CopyEdit
 
 ### 📦 Image vs Container in Action
 
-bash
-
-CopyEdit
-
 `# Pull the Alpine Linux image docker pull alpine  # Run a container from Alpine docker run -it alpine sh`
 
 Now you're in a minimal shell inside a container. Try:
-
-sh
-
-CopyEdit
 
 `echo "Hello from Alpine"`
 

@@ -20,7 +20,11 @@ We'll create a basic Dockerized Python web app using **Flask**.
 
 Create a new folder and files:
 
-`mkdir my-flask-app && cd my-flask-app  # Create the app touch app.py requirements.txt Dockerfile`
+``` bash 
+mkdir my-flask-app && cd my-flask-app 
+# Create the app 
+touch app.py requirements.txt Dockerfile
+```
 
 ---
 
@@ -28,7 +32,15 @@ Create a new folder and files:
 
 #### `app.py`
 
-`from flask import Flask app = Flask(__name__)  @app.route('/') def hello():     return "Hello from Dockerized Flask!"  if __name__ == '__main__':     app.run(host='0.0.0.0', port=5000)`
+``` python 
+from flask import Flask
+app = Flask(__name__)
+@app.route('/') 
+def hello():
+    return "Hello from Dockerized Flask!"  
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+```
 
 #### `requirements.txt`
 
@@ -59,7 +71,9 @@ Create a new folder and files:
 
 ### 🛠️ Step 4: Build Your Docker Image
 
-`docker build -t my-flask-app .`
+``` bash 
+docker build -t my-flask-app .
+```
 
 - `-t` gives your image a name (`my-flask-app`)
     
@@ -70,7 +84,9 @@ Create a new folder and files:
 
 ### ▶️ Step 5: Run the Container
 
-`docker run -d -p 5000:5000 --name flask-container my-flask-app`
+```bash 
+docker run -d -p 5000:5000 --name flask-container my-flask-app
+```
 
 - `-d`: detached mode (runs in background)
     
@@ -87,8 +103,16 @@ You should see: **"Hello from Dockerized Flask!"**
 
 ### 🔍 Step 6: Manage and Clean Up
 
-`# See running containers docker ps  # Stop the container docker stop flask-container  # Remove it docker rm flask-container  # (Optional) Remove the image docker rmi my-flask-app`
-
+```bash 
+# See running containers 
+docker ps  
+# Stop the container 
+docker stop flask-container  
+# Remove it
+docker rm flask-container  
+# (Optional) Remove the image
+docker rmi my-flask-app
+```
 ---
 
 ### ✅ Recap: Key Dockerfile Instructions

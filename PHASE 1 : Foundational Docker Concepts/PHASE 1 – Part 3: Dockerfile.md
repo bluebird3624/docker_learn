@@ -60,7 +60,8 @@ if __name__ == '__main__':
     # Copy the local code into the container 
     COPY requirements.txt . 
     RUN pip install --no-cache-dir -r requirements.txt  
-    # Copy the rest of the app COPY . .  
+    # Copy the rest of the app
+    COPY . .  
     # Expose the port Flask runs on 
     EXPOSE 5000  
     # Define the command to run the app 

@@ -43,9 +43,11 @@ Docker is a **containerization platform** that allows you to package an applicat
 
 ### 🚦 Your First Commands (Try These Now):
 
-``` Check Docker is installed
+``` bash
+Check Docker is installed
  docker --version  
- Pull an image from Docker Hub docker pull hello-world  # Run the image (runs a test container) docker run hello-world```
+ Pull an image from Docker Hub docker pull hello-world  # Run the image (runs a test container) docker run hello-world
+```
 
 You should see a success message.
 

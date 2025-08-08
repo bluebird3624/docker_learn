@@ -323,5 +323,4 @@ Once your Dockerfile is ready:
 
 ### 🧪 Optional Challenge:
 
-Dockerize a basic Node.js or PHP app using a Dockerfile.  
-Let me know if you'd like a scaffolded example to try it out.
+Dockerize a basic Node.js or PHP app using a Dockerfile.

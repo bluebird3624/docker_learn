@@ -133,7 +133,8 @@ docker build -t flask-redis-app .  docker run -d --name my-app \   --network my-
 Use this to list and inspect:
 
 ```bash
-docker network ls docker network inspect my-net
+docker network ls 
+docker network inspect my-net
 ```
 
 ---
@@ -145,9 +146,6 @@ docker network ls docker network inspect my-net
 2. One runs a small Python HTTP server.
     
 3. The other curls it by name.
-    
-
-Let me know if you want code templates.
 
 ---
 

@@ -21,11 +21,9 @@ Let’s break it down:
 
 ### 🔧 Example:
 
-bash
-
-CopyEdit
-
-`docker run -d -p 8080:80 --name web nginx`
+``` bash
+docker run -d -p 8080:80 --name web nginx
+```
 
 This maps:
 
@@ -38,19 +36,15 @@ This maps:
 
 ### Syntax Recap:
 
-ruby
-
-CopyEdit
-
-`-p <host_port>:<container_port>`
+``` bash
+-p <host_port>:<container_port>
+```
 
 You can also bind to a specific IP:
 
-css
-
-CopyEdit
-
-`-p 127.0.0.1:8080:80`
+```bash
+-p 127.0.0.1:8080:80
+```
 
 That makes it **only accessible locally** (good for dev).
 
@@ -70,43 +64,48 @@ We'll simulate a web app that uses Redis.
 
 #### Step 1: Create a user-defined bridge network
 
-bash
-
-CopyEdit
-
-`docker network create my-net`
+``` bash
+docker network create my-net
+```
 
 #### Step 2: Start Redis container on that network
 
-bash
-
-CopyEdit
-
-`docker run -d --name my-redis --network my-net redis`
+``` bash
+docker run -d --name my-redis --network my-net redis
+```
 
 #### Step 3: Create a simple Flask app (save as `app.py`):
 
-python
+``` python
+from flask import Flask 
+import redis  
+app = Flask(__name__) 
+cache = redis.Redis(host='my-redis', port=6379)  
+@app.route('/') 
+def hello():
+    cache.incr('hits')
+    return f"Hello! This page has been viewed {cache.get('hits').decode()} times."  
 
-CopyEdit
-
-`from flask import Flask import redis  app = Flask(__name__) cache = redis.Redis(host='my-redis', port=6379)  @app.route('/') def hello():     cache.incr('hits')     return f"Hello! This page has been viewed {cache.get('hits').decode()} times."  if __name__ == '__main__':     app.run(host='0.0.0.0', port=5000)`
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+    
+```
 
 #### Step 4: Dockerfile for the app
 
-Dockerfile
-
-CopyEdit
-
-`FROM python:3.10-slim WORKDIR /app COPY . . RUN pip install flask redis EXPOSE 5000 CMD ["python", "app.py"]`
+```Dockerfile
+FROM python:3.10-slim 
+WORKDIR /app 
+COPY . . 
+RUN pip install flask redis 
+EXPOSE 5000 CMD ["python", "app.py"]
+```
 
 #### Step 5: Build & Run on the Same Network
 
-bash
-
-CopyEdit
-
-`docker build -t flask-redis-app .  docker run -d --name my-app \   --network my-net \   -p 5000:5000 \   flask-redis-app`
+```bash 
+docker build -t flask-redis-app .  docker run -d --name my-app \   --network my-net \   -p 5000:5000 \   flask-redis-app
+```
 
 ---
 
@@ -133,11 +132,9 @@ CopyEdit
 
 Use this to list and inspect:
 
-bash
-
-CopyEdit
-
-`docker network ls docker network inspect my-net`
+```bash
+docker network ls docker network inspect my-net
+```
 
 ---
 

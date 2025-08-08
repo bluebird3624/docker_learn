@@ -48,11 +48,13 @@ We’ll use a container that writes data to a file.
 
 ### Step 1: Run a container with a volume
 
-bash
-
-CopyEdit
-
-`docker run -d --name volume-test \   -v mydata:/data \   busybox sh -c "while true; do date >> /data/log.txt; sleep 1; done"`
+``` bash
+docker run -d
+    --name volume-test
+    -v mydata:/data
+    busybox
+    sh -c "while true; do date >> /data/log.txt; sleep 1; done"
+```
 
 - `-v mydata:/data`: This creates a **named volume** called `mydata` and mounts it at `/data` inside the container.
     
@@ -65,11 +67,12 @@ CopyEdit
 
 ### Step 2: See What’s Going On
 
-bash
-
-CopyEdit
-
-`# Check the volume docker volume ls  # Inspect it docker volume inspect mydata`
+``` bash 
+# Check the volume
+docker volume ls  
+# Inspect it 
+docker volume inspect mydata
+```
 
 ---
 
@@ -77,29 +80,25 @@ CopyEdit
 
 You can't directly browse it from the host easily, but you **can run another container** using the same volume:
 
-bash
-
-CopyEdit
-
-`docker run -it --rm -v mydata:/data busybox cat /data/log.txt`
+``` bash 
+docker run -it --rm -v mydata:/data busybox cat /data/log.txt
+```
 
 You’ll see the output like:
 
-python-repl
-
-CopyEdit
-
-`Thu Aug  7 12:00:00 UTC 2025 Thu Aug  7 12:00:01 UTC 2025 ...`
+``` python
+Thu Aug  7 12:00:00 UTC 2025 Thu Aug  7 12:00:01 UTC 2025 ...
+```
 
 ---
 
 ### Step 4: Clean Up
 
-bash
-
-CopyEdit
-
-`docker stop volume-test docker rm volume-test docker volume rm mydata`
+```bash
+docker stop volume-test 
+docker rm volume-test 
+docker volume rm mydata
+```
 
 ---
 
@@ -107,11 +106,9 @@ CopyEdit
 
 Mount your **actual source code** into a container so changes reflect immediately.
 
-bash
-
-CopyEdit
-
-`docker run -v $(pwd):/app -w /app python:3.10 python app.py`
+``` bash
+docker run -v $(pwd):/app -w /app python:3.10 python app.py
+```
 
 This:
 
@@ -139,10 +136,8 @@ This:
 
 Try running a PostgreSQL or MySQL container with a volume:
 
-bash
-
-CopyEdit
-
-`docker run --name mydb -e POSTGRES_PASSWORD=secret \   -v pgdata:/var/lib/postgresql/data \   -d postgres`
+``` bash
+docker run --name mydb -e POSTGRES_PASSWORD=secret \   -v pgdata:/var/lib/postgresql/data \   -d postgres
+```
 
 Then delete and recreate the container — your DB stays intact.
